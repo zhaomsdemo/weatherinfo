@@ -1,0 +1,83 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.2'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.zhaomsdemo.research'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.apache.cxf:cxf-spring-boot-starter-jaxws:4.0.5' // 适配 Spring Boot 3 的最新版本
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:3.0.2' // 使用适配 JDK 17 的 JAXB 实现
+    implementation 'javax.activation:activation:1.1.1'
+    implementation 'com.sun.istack:istack-commons-runtime:3.0.12'
+    implementation 'javax.xml.ws:jaxws-api:2.3.1'
+    implementation 'com.sun.xml.ws:jaxws-rt:3.0.1' // JAX-WS 运行时实现
+
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'org.apache.httpcomponents:httpcore:4.4.13'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+configurations {
+    cxfCodegen
+}
+
+dependencies {
+    cxfCodegen 'org.apache.cxf:cxf-tools-wsdlto-core:4.0.5'
+    cxfCodegen 'org.apache.cxf:cxf-tools-wsdlto-databinding-jaxb:4.0.5'
+    cxfCodegen 'org.apache.cxf:cxf-tools-wsdlto-frontend-jaxws:4.0.5'
+}
+
+task generateWsdlClient(type: JavaExec) {
+    main = 'org.apache.cxf.tools.wsdlto.WSDLToJava'
+    classpath = configurations.cxfCodegen + sourceSets.main.compileClasspath
+    args = [
+            '-d', "$buildDir/generated-sources/cxf",
+            '-p', 'com.example.generated',
+            'src/main/resources/wsdl/WeatherWebService.wsdl' // 替换为你的 WSDL 文件路径
+    ]
+}
+
+compileJava {
+    dependsOn generateWsdlClient
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs += "$buildDir/generated-sources/cxf"
+        }
+    }
+}
+
+
