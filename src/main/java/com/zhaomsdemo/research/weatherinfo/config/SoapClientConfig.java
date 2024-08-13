@@ -1,7 +1,7 @@
 package com.zhaomsdemo.research.weatherinfo.config;
 
-import com.example.generated.WeatherWebService;
-import com.example.generated.WeatherWebServiceSoap;
+import com.zhaomsdemo.research.weatherinfo.client.WeatherWebService;
+import com.zhaomsdemo.research.weatherinfo.client.WeatherWebServiceSoap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;

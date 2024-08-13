@@ -1,7 +1,7 @@
 package com.zhaomsdemo.research.weatherinfo.service;
 
-import com.example.generated.ArrayOfString;
-import com.example.generated.WeatherWebServiceSoap;
+import com.zhaomsdemo.research.weatherinfo.client.ArrayOfString;
+import com.zhaomsdemo.research.weatherinfo.client.WeatherWebServiceSoap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

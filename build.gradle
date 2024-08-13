@@ -62,8 +62,8 @@ task generateWsdlClient(type: JavaExec) {
     main = 'org.apache.cxf.tools.wsdlto.WSDLToJava'
     classpath = configurations.cxfCodegen + sourceSets.main.compileClasspath
     args = [
-            '-d', "$buildDir/generated-sources/cxf",
-            '-p', 'com.example.generated',
+            '-d', "$buildDir/src/main/java",
+            '-p', 'com.zhaomsdemo.research.weatherinfo.client',
             'src/main/resources/wsdl/WeatherWebService.wsdl' // 替换为你的 WSDL 文件路径
     ]
 }
