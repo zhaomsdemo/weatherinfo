@@ -1,4 +1,7 @@
 1. https://zoltanaltfatter.com/2016/04/30/soap-over-https-with-client-certificate-authentication/
+2. https://github.com/citrusframework/citrus-samples/tree/main/samples-soap/sample-soap-ssl
+3. https://github.com/tinue/wsdl-home-sample/blob/main/client/pom.xml
+4. https://reflect.run/articles/using-postman-to-test-soap-web-services/
    @Configuration
    public class WebServiceClientConfig {
 
