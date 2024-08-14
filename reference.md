@@ -2,6 +2,7 @@
 2. https://github.com/citrusframework/citrus-samples/tree/main/samples-soap/sample-soap-ssl
 3. https://github.com/tinue/wsdl-home-sample/blob/main/client/pom.xml
 4. https://reflect.run/articles/using-postman-to-test-soap-web-services/
+5. https://www.w3schools.com/xml/tempconvert.asmx?WSDL
    @Configuration
    public class WebServiceClientConfig {
 
